@@ -1,6 +1,6 @@
 /*
  * Name        : lab_3.cpp
- * Author      : FILL IN
+ * Author      : Johnny Xie
  * Description : Using branching statements, looping statements and string and
  *               character functions complete the functions
  */
@@ -65,6 +65,24 @@ int main() {
  */
 string Goldilocks(string item, int number) {
   // CODE HERE
+
+  //hot, cold, big, small, hard, soft
+  string ReturnStatement = "This " + item + " is too ";
+
+  switch (number)
+  {
+  case 1:
+    if (item == "porridge") return ReturnStatement + "hot" ;
+    if (item == "chair") return ReturnStatement + "big";
+    if (item == "bed") return ReturnStatement + "hard";
+  case 2:
+    if (item == "porridge") return ReturnStatement + "cold" ;
+    if (item == "chair") return ReturnStatement + "small";
+    if (item == "bed") return ReturnStatement + "soft";
+  case 3:
+    return "This " + item + " is just right";
+  }
+  
 }
 
 /*
@@ -81,6 +99,29 @@ string Goldilocks(string item, int number) {
  */
 int RockScissorPaper(char player_one, char player_two) {
   // YOU MUST USE A SWITCH IN THIS FUNCTION
+
+  //convert result into ascii int for math comparison
+  //win condition should be <0 and loose condiiton should be > 0
+  //except case in scissors where it is biggest number in ascii
+  player_one = tolower(player_one);
+  player_two = tolower(player_two);
+  //cout<< "player one : "<<player_one<<"\nplayer_two : "<<player_two<<endl;
+  int result_int = int(player_one)-int(player_two);
+  switch (result_int)
+  {
+    case 0:
+      return 3;
+
+    default:
+      if (player_one == 's'){
+        if (player_two == 'p')return 1;
+        else return 2;
+      }
+      else if (result_int < 0) return 1;
+      else if (result_int > 0) return 2;
+      
+  }
+
   // CODE HERE
 }
 
@@ -95,7 +136,13 @@ int RockScissorPaper(char player_one, char player_two) {
  */
 string CharWithAsciiValueAsString(char character) {
   // CODE HERE
-
+  //cout<<int(character)<<endl;
+  stringstream ss;
+  ss << character <<" " << int(character);
+  ss.str();
+  //ss.clear();
+  
+  return ss.str();
   // HINT: try a stringstream here
 }
 
@@ -106,6 +153,12 @@ string CharWithAsciiValueAsString(char character) {
  */
 string ToLower(string input) {
   // CODE HERE
+
+  for (int x = 0; x < input.length(); x++){
+    input[x] = tolower(input[x]);
+
+  }
+  return input;
 }
 
 /*
@@ -115,6 +168,11 @@ string ToLower(string input) {
  */
 string ToUpper(string input) {
   // CODE HERE
+  for (int x = 0; x < input.length(); x++){
+    input[x] = toupper(input[x]);
+
+  }
+  return input;
 }
 
 /*
@@ -128,6 +186,8 @@ string ToUpper(string input) {
  */
 char GetCharacter(string input, int char_index) {
   // CODE HERE
+  if (input.length() < char_index) return '\0';
+  return input[char_index];
 }
 
 // For testing (DO NOT ALTER)
