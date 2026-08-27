@@ -66,6 +66,10 @@ int main() {
  */
 string MakeString(string label, double value, char separator) {
   // CODE HERE
+  stringstream ss;
+  ss<<label<<" "<<separator<<" "<<value;
+  ss.str();
+  return ss.str();
 }
 
 /*
@@ -78,6 +82,15 @@ string MakeString(string label, double value, char separator) {
  */
 char StringToChar(string value) {
   // CODE HERE
+
+  //debug
+  //cout<<"the size of this value is "<<value.length()<< "and the first character of this asshole is "<<value[0]<<endl;
+
+  if (value.length() < 0 || value.length() > 1) return '\0';
+  else {
+    char return_value = value[0];
+    return return_value;
+  }
 }
 
 /*
@@ -114,6 +127,16 @@ int StringToInt(string value) {
  */
 double StringToDouble(string value) {
   // CODE HERE
+  double ivalue = 0;
+  stringstream converter(value);
+  converter.exceptions(ios_base::failbit);
+
+  try {
+    converter >> ivalue;
+  } catch (ios_base::failure &f) {
+  }
+
+  return ivalue;
 }
 
 /*
@@ -129,6 +152,19 @@ double StringToDouble(string value) {
  */
 bool StringToBool(string value) {
   // CODE HERE
+  char detect = value[0];
+  switch (detect){
+  case 'T':
+    return true;
+  case 't':
+    return true;
+  case 'F':
+    return false;
+  case 'f':
+    return false;
+  default:
+    return false;
+  }
 }
 
 // For testing (DO NOT ALTER)
