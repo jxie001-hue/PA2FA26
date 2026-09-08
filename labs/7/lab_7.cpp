@@ -12,6 +12,7 @@ using std::ifstream;
 using std::endl;
 using std::string;
 using std::map;
+using namespace std;
 
 /*
  * Open and read the contents of a text file. Each line of the
@@ -57,6 +58,50 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+bool ProcessFile(string filename){
+  //open,read,execute
+
+  ifstream fin;
+  int line = 0;
+
+
+
+  fin.open(filename);
+  
+  if (fin.fail()) {
+    return false;
+  }
+
+  while(fin>>line){
+    
+    //cout<<"current line value is "<<line<<endl;
+    switch (line){
+      case 10:
+        OnTen();
+        break;
+      case 20:
+        OnTwenty();
+        break;
+      case 30:
+        OnThirty();
+        break;
+      case 40:
+        OnForty();
+        break;
+      case 50:
+        OnFifty();
+        break;
+      default:
+        OnError();
+        break;
+    }
+  }
+  
+  fin.close();
+
+  return true;
+};
+
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
