@@ -15,6 +15,7 @@ using std::endl;
 using std::string;
 using std::map;
 using std::stringstream;
+using namespace std;
 
 /*
  * Process the argv array (command-line arguments to the program). Ignore
@@ -28,8 +29,8 @@ using std::stringstream;
  *   any other value -- invoke the function OnError
  * @param int argc - Contains the number of arguments passed to the program
  *                   on the command-line
- * @param char *argv[] - An array containing the command-line arguments
- */
+ *@param char *argv[] - An array containing the command-line arguments*/
+
 void ProcessArguments(int argc, char *argv[]);
 
 // For testing (DO NOT ALTER)
@@ -59,6 +60,20 @@ int main(int argc, char* argv[]) {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+void ProcessArguments(int argc, char *argv[]){
+  for (int x = 1; x<argc; x++){
+    string value = argv[x];
+    if(value == "10")OnTen();
+    else if (value == "20")OnTwenty();
+    else if (value == "30")OnThirty();
+    else if (value == "40")OnForty();
+    else if (value == "50")OnFifty();
+    else OnError();
+
+
+  }
+
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest(int argc, char *argv[]) {
