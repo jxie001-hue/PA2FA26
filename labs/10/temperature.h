@@ -10,7 +10,8 @@ using std::string;
 using std::stringstream;
 
 // ADD HEADER GUARD HERE
-
+#ifndef TEMPERATURE_H
+#define TEMPERATURE_H
 
 /*
  * Class Temperature.
@@ -23,14 +24,18 @@ class Temperature {
    * Constructor #1.
    * Sets kelvin to 0
    */
-  Temperature();
+  Temperature(){
+    kelvin_ = 0;
+  };
 
   /*
    * Constructor #2.
    * Sets kelvin to the supplied value
    * @param double kelvin - The value to set the internal kelvin to
    */
-  Temperature(double kelvin);
+  Temperature(double kelvin){
+    kelvin_ = kelvin;
+  };
 
   /*
    * Constructor #3.
@@ -43,14 +48,21 @@ class Temperature {
    * @param char unit - The type of unit temp is. Will be either 'F' or 'C',
    *                    case-insensitive
    */
-  Temperature(double temp, char unit);
+  Temperature(double temp, char unit){
+    if (unit == 'F' || unit=='f') SetTempFromFahrenheit(temp);
+    else if (unit =='C' || unit == 'c') SetTempFromCelsius(temp);
+    else SetTempFromKelvin(temp);
+
+  };
 
   /*
    * The temperature will come in as kelvin and this function will set the
    * internal temp to this value
    * @param double kelvin - The value to set the internal kelvin to.
    */
-  void SetTempFromKelvin(double kelvin);
+  void SetTempFromKelvin(double kelvin){
+    kelvin_ = kelvin;
+  };
 
 
   /*
@@ -60,7 +72,9 @@ class Temperature {
    * @param double celsius - The value (in celsius) to set the internal kelvin
    *                       - to.
    */
-  void SetTempFromCelsius(double celsius);
+  void SetTempFromCelsius(double celsius){
+    kelvin_ = celsius + 273.15;
+  };
 
 
   /*
@@ -70,27 +84,35 @@ class Temperature {
    * @param double fahrenheit - The value (in fahrenheit) to set the internal
    *                          - kelvin to.
    */
-  void SetTempFromFahrenheit(double fahrenheit);
+  void SetTempFromFahrenheit(double fahrenheit){
+    kelvin_ = (5.0 * (fahrenheit - 32) / 9) + 273.15;
+  };
 
   /*
    * Gets the internal temperature in Kelvin.
    * @return double - The temperature in Kelvin
    */
-  double GetTempAsKelvin() const;
+  double GetTempAsKelvin() const{
+    return kelvin_;
+  };
 
   /*
    * Returns the internal temp converted to Celsius
    * Formula: k - 273.15
    * @return double - The temperature in Celsius
    */
-  double GetTempAsCelsius() const;
+  double GetTempAsCelsius() const{
+    return kelvin_ - 273.15;
+  };
 
   /*
    * Returns the internal temp converted to Fahrenheit
    * Formula: ((c * 9.0) / 5) + 32;
    * @return double - The temperature in Fahrenheit
    */
-  double GetTempAsFahrenheit() const;
+  double GetTempAsFahrenheit() const{
+    return ((GetTempAsCelsius() * 9.0) / 5) + 32;
+  };
 
   /*
    * Get a string representation of the temperature.
@@ -114,3 +136,4 @@ class Temperature {
 };
 
 // REST OF HEADER GUARD GOES HERE
+#endif

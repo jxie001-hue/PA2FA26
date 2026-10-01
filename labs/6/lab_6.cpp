@@ -23,7 +23,9 @@ using std::string;
  * Display "Hello world!" to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-void Hello();
+void Hello(){
+  cout<<"Hello world!";
+};
 
 /*
  * function name: PrintMessage
@@ -35,6 +37,10 @@ void Hello();
  */
 // CODE HERE (FUNCTION PROTOTYPE)
 
+void PrintMessage(string message){
+  cout<<message;
+}
+
 /*
  * function name: GetAnswer
  * parameters: none
@@ -44,6 +50,9 @@ void Hello();
  * Return the value 42
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int GetAnswer(){
+  return 42;
+}
 
 /*
  * function name: FindLarger
@@ -55,6 +64,16 @@ void Hello();
  * if the values are equivalent.
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int FindLarger(const int num1, const int num2){
+
+  //debug line here
+  //cout<<"num1 equal to "<<num1<<" and num2 equal to "<<num2<<endl;
+
+  //code here
+  if (num1 > num2) return num1;
+  else return num2;
+
+}
 
 /*
  * function name: GetStats
@@ -67,8 +86,32 @@ void Hello();
  * a count of the number of uppercase characters of first parameter (string),
  * third parameter (int) should contain a count of the number of lowercase
  * characters in the first parameter (string)
+ * 
+ * summary: return how long is string, how many uppercase, how many lowercase
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int GetStats(string something, int &upper, int &lower){
+
+  upper = 0;
+  lower = 0;
+
+  for (int x = 0; x < something.length(); x++){
+    //upper ascii is from 65-90
+    //lower ascii is from 97-122
+
+
+    int temp = something[x];
+    if (temp >=65 && temp <=90) upper++;
+    else if (temp >= 97 && temp <= 122) lower++;
+
+  }
+  int size_of_string = something.length();
+
+  //debug here
+
+  //cout<< "there are "<<upper<<" uppercases and "<<lower<<" lowercases, and the size of the string is "<<size_of_string<<endl;
+  return size_of_string;
+}
 
 /*
  * function name: BuildMessage
@@ -83,6 +126,22 @@ void Hello();
  * "Message: empty".
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+
+string BuildMessage(string Message = "", bool IsUpperCase = false){
+
+  if (Message.length() == 0) return "Message: empty";
+
+  if (IsUpperCase == true){
+    for (int x = 0; x< Message.length(); x++){
+      Message[x] = toupper(Message[x]);
+    }
+  }
+
+  return "Message: "+ Message;
+  
+
+
+}
 
 
 // For testing (DO NOT ALTER)
@@ -101,11 +160,6 @@ int main() {
   UnitTest();
   // This ends program execution
   return 0;
-}
-
-// CODE HERE (FUNCTION DEFINITIONS)
-void Hello() {
-  cout << "Hello world!";
 }
 
 // For testing (DO NOT ALTER)
