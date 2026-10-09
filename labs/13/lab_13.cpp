@@ -1,4 +1,4 @@
-/*
+ /*
  * Name        : lab_13.cpp
  * Author      : FILL IN
  * Description : Working with Pointers and Dynamic Objects
@@ -84,6 +84,65 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+string* MakeDynoString(string contents){
+  return new string(contents);
+
+}
+
+/*
+ * Free the memory associated with a dynamic string and NULL out its pointer.
+ * @param string *& the_string - A pointer (passed by reference) to a dynamic
+ *                               string
+ */
+void ClearDynoString(string *&the_string){
+  delete the_string;
+  the_string = nullptr;
+}
+
+
+
+unsigned int CountChars(string* theString, unsigned int &alpha, unsigned int &num){
+if (theString == nullptr)throw "NULL STRING REFERENCE";
+
+else{
+  alpha = 0;
+  num = 0;
+  for (int x = 0; x< theString->length(); x++){
+    if(isalpha((*theString)[x]))alpha++;
+    else if (isdigit((*theString)[x]))num++;
+  }
+}
+
+return theString->length();
+
+}
+
+//check if the word exist
+// @throw The message "NULL STRING REFERENCE" if the_string is NULL
+bool FindWord(string *the_string, string the_word){
+  if (the_string == nullptr) throw "NULL STRING REFERENCE";
+
+  return (the_string->find(the_word) != string::npos);
+}
+
+
+//Replace one word in a string with another word.
+// @uses String Member Function find()
+// @uses String Member Function replace()
+//@return bool - True if old_word was found and replaced, else return false
+//@throw The message "NULL STRING REFERENCE" if the_string is NULL
+bool ReplaceWord(string* the_string, string old_word, string new_word){
+  if (the_string == nullptr) throw "NULL STRING REFERENCE";
+
+  int position = the_string->find(old_word);
+
+  if (position == string::npos) return false;
+
+  the_string->replace(position, old_word.length(), new_word);
+
+  return true;
+
+}
 
 
 // For testing (DO NOT ALTER)
