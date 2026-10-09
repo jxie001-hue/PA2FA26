@@ -66,6 +66,58 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITIONS
+int* MakeDynoIntArray(unsigned int size){
+  return new int[size];
+
+}
+
+//add da shyt
+//throw The message "NULL ARRAY REFERENCE" if the_array is NULL
+// Syntax: throw "The Message to throw";
+int Sum(int* the_array, unsigned int array_size){
+  if (the_array == nullptr) throw "NULL ARRAY REFERENCE";
+
+  int sum = 0;
+
+  for (unsigned int x = 0; x< array_size; x++){
+    sum+=the_array[x];
+  }
+
+  return sum;
+}
+
+//find max
+// @throw The message "NULL ARRAY REFERENCE" if the_array is NULL
+//       Syntax: throw "The Message to throw";
+int Max(int* the_array, unsigned int array_size){
+  if (the_array == nullptr) throw "NULL ARRAY REFERENCE";
+
+  int MaxVal = the_array[0];
+
+  for (unsigned int x = 1; x < array_size; x++){
+    if (the_array[x]>MaxVal) MaxVal = the_array[x];
+    
+  }
+
+  return MaxVal;
+}
+
+
+//find min
+// @throw The message "NULL ARRAY REFERENCE" if the_array is NULL
+//       Syntax: throw "The Message to throw";
+int Min(int* the_array, unsigned int array_size){
+  if (the_array == nullptr) throw "NULL ARRAY REFERENCE";
+
+  int min = the_array[0];
+
+  for (unsigned int x = 1; x<array_size; x++){
+    if (the_array[x]<min) min = the_array[x];
+  }
+
+  return min;
+}
+
 
 
 // For testing (DO NOT ALTER)
