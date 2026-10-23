@@ -61,6 +61,44 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+int InsertionSort(int the_array[], unsigned int size){
+  int ps = 0;
+
+  for (int x = 0; x < size; x++){
+    ps++;
+
+    for (int y = x; y > 0; y--){
+      if(the_array[y] < the_array[y - 1]){
+        SwapValues(the_array[y], the_array[y-1]);
+      }else {
+        break;
+      }
+    }
+  }
+  return ps;
+}
+
+
+int ShellSort(int the_array[], unsigned int size){
+  int ps = 0;
+
+  for (unsigned int gap = size/2; gap > 0; gap /= 2){
+    ps++;
+
+    for(int x = gap; x < size; x++){
+      for(int y = x; y >= gap; y-=gap){
+        if(the_array[y] < the_array[y - gap]) {
+          SwapValues(the_array[y], the_array[y - gap]);
+        }else {
+          break;
+        }
+      }
+    }
+    DisplayArray(the_array);
+  }
+
+  return ps;
+}
 
 
 void SwapValues(int &value_1, int &value_2) {
@@ -69,6 +107,11 @@ void SwapValues(int &value_1, int &value_2) {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+    int temp1 = value_1;
+    int temp2 = value_2;
+
+    value_1 = temp2;
+    value_2 = temp1;
 }
 
 // For testing (DO NOT ALTER)
