@@ -70,12 +70,84 @@ int main() {
 // CODE HERE -- FUNCTION DEFINITION
 
 
+// dumb bubblesort
+int BubbleSort(int the_array[], unsigned int size) {
+  int ps = 0;
+
+  for (unsigned int x = 0; x + 1 < size; x++) {
+    ps++;
+
+    for (unsigned int y = 0; y + 1 < size - x; y++) {
+      if (the_array[y] > the_array[y + 1]) {
+        SwapValues(the_array[y], the_array[y + 1]);
+      }
+    }
+  }
+
+  return ps;
+}
+
+
+// buublesrot this badboy
+int OptimizedBubbleSort(int the_array[], unsigned int size) {
+  int ps = 0;
+  bool completed = false;
+
+  if (size < 2) {
+    return 0;
+  }
+
+  do {
+    completed = true;
+    ps++;
+
+    for (unsigned int x = 0; x + 1 < size; x++) {
+      if (the_array[x] > the_array[x + 1]) {
+        SwapValues(the_array[x], the_array[x + 1]);
+        completed = false;
+      }
+    }
+  } while (completed == false);
+
+  return ps;
+}
+
+int SelectionSort(int the_array[], unsigned int size) {
+     // find smallest value, move to most left, and whitelist it and moveon
+      int ps = 0;
+
+  for (unsigned int x = 0; x < size; x++) {
+    ps++;
+    unsigned int smallest_index = x;
+
+    for (unsigned int y = x + 1; y < size; y++) {
+      if (the_array[smallest_index] > the_array[y]) {
+        smallest_index = y;
+      }
+    }
+
+    if (smallest_index != x) {
+      SwapValues(the_array[x], the_array[smallest_index]);
+    }
+  }
+
+  return ps;
+}
+
+
+
+
 void SwapValues(int &value_1, int &value_2) {
   // DO NOT ALTER THE NEXT 3 LINES!!!
   if (GRADER) {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+     int temp1 = value_1;
+     int temp2 = value_2;
+
+     value_1 = temp2;
+     value_2 = temp1;
 }
 
 // For testing (DO NOT ALTER)
