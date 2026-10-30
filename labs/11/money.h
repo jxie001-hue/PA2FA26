@@ -5,6 +5,9 @@
  */
 
 // ADD HEADER GUARD HERE
+#ifndef MONEY_H
+#define MONEY_H
+
 
 #include <string>
 #include <iostream>
@@ -113,3 +116,4 @@ class Money {
 };
 
 // REST OF HEADER GUARD GOES HERE
+#endif

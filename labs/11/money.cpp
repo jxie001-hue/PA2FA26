@@ -21,3 +21,32 @@ const Money operator +(const Money& amount1, const Money& amount2) {
 }
 
 // CLASS FUNCTION DEFINITIONS GO HERE
+
+
+//addd shyt
+//add day shyt and convert cent to dollar
+
+const Money operator +(const Money& b1, const Money& b2){
+  int temp_dollar = b1.dollars_ + b2.dollars_;
+  int temp_cent = b1.cents_ + b2.cents_;
+
+    while(temp_cent>=100){
+      temp_cent-=100;
+      temp_dollar++;
+    }
+  
+  return Money(temp_dollar,temp_cent);
+}
+
+const Money operator-(const Money& b1, const Money& b2){
+  int temp_dollar = b1.dollars_ + b2.dollars_;
+  int temp_cent = b1.cents_ + b2.cents_;
+
+  while(temp_cent<0){
+    temp_cent+= 100;
+    temp_dollar--;
+  }
+
+  return Money(temp_dollar,temp_cent);
+}
+
